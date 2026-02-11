@@ -1,8 +1,8 @@
 /*
 ==================================================
-REACT ROOT RENDERING – FUNDAMENTAL NOTES
+PURE REACT – FUNDAMENTALS (UP TO CHILDREN)
 ==================================================
-This file demonstrates how React renders an element
+This file demonstrates how React works internally
 without using JSX.
 ==================================================
 */
@@ -12,45 +12,25 @@ without using JSX.
  IMPORTS
 ================================================== */
 
-// React 18+ rendering API
+// React 18+ Rendering API
 import { createRoot } from "react-dom/client";
 
-// Required when using React.createElement
+// Required for React.createElement
 import React from "react";
 
 
 /* ==================================================
-   WHY DO WE IMPORT createRoot?
+ PAGE SETUP (HTML CONNECTION)
 ==================================================
 
-- createRoot is used to connect React to the DOM.
-- It allows React to render content inside a specific HTML element.
-- Required in React 18+.
-- Enables modern features like Concurrent Rendering.
-
-Old method (before React 18):
-  ReactDOM.render(<App />, document.getElementById("root"));
-
-New method (React 18+):
-  const root = createRoot(document.getElementById("root"));
-  root.render(<App />);
-*/
-
-
-/* ==================================================
-   WHAT IS THE "root" ID?
-==================================================
-
-- The "root" id comes from index.html.
-- It is just an empty container div.
-
-Example (index.html):
+index.html must contain a container element:
 
   <div id="root"></div>
 
+Important:
 - React does NOT create this div.
-- React only fills it with UI content.
-- The name "root" can be changed to anything.
+- React only controls what goes inside it.
+- The id name can be anything (e.g., "app", "main").
 
 Example:
   <div id="myApp"></div>
@@ -61,40 +41,57 @@ Then:
 
 
 /* ==================================================
-  CONNECT REACT TO THE ROOT CONTAINER
+ CONNECTING REACT TO THE DOM
 ================================================== */
 
-// Select the container from index.html
+// Select the container
 const root = createRoot(document.getElementById("root"));
-root.render(<App />);
 
-// It tells React:
+/*
+What createRoot() does:
 
-// “Render the App component inside the DOM container that was passed to createRoot().”
+- Connects React to a specific DOM container.
+- Returns a React Root object.
+- Enables modern React 18 features.
 
-<h1 data-reactroot id="recipe-0" data-type="title">Baked Salmon</h1>
-// ReactDOM allows you to render a single element to the DOM.6
-//  React tags this as
-// data-reactroot. All other React elements are composed into a single element using
-// nesting.
-// React renders child elements using props.children. In the previous section, we ren‐
-// dered a text element as a child of the h1 element, and thus props.children was set to
-// "Baked Salmon". We could render other React elements as children too, creating a
-// tree of elements. This is why we use the term component tree. The tree has one root
-// component from which many branches grow.ReactDOM allows you to render a single element to the DOM.6
-//  React tags this as
-// data-reactroot. All other React elements are composed into a single element using
-// nesting.
-// React renders child elements using props.children. In the previous section, we ren‐
-// dered a text element as a child of the h1 element, and thus props.children was set to
-// "Baked Salmon". We could render other React elements as children too, creating a
-// tree of elements. This is why we use the term component tree. The tree has one root
-// component from which many branches grow.
-//appears in the browser, showing that React has successfully rendered the element inside the root container.
-//data-reactroot is an internal attribute added by React int the root element to indicate that this element is managed by React
+Old way (before React 18):
+  ReactDOM.render(<App />, container)
+
+New way:
+  const root = createRoot(container);
+  root.render(<App />);
+*/
+
 
 /* ==================================================
- React.createElement EXPLANATION
+REACT ELEMENTS
+==================================================
+
+A React element is a plain JavaScript object that
+describes what should appear on the screen.
+
+When you write:
+
+  <h1>Hello</h1>
+
+React actually creates:
+
+{
+  $$typeof: Symbol(React.element),
+  type: "h1",
+  props: { children: "Hello" }
+}
+
+Important properties:
+
+- $$typeof → Identifies it as a React element
+- type     → HTML tag or Component
+- props    → Attributes + children
+*/
+
+
+/* ==================================================
+ React.createElement()
 ==================================================
 
 Syntax:
@@ -103,101 +100,89 @@ Syntax:
 type      → HTML tag name (e.g., "h1")
 props     → Object containing attributes
 children  → Content inside the element
-
-Example below creates:
-
-  <h1 id="recipe-0" data-type="title">
-     Baked Salmon
-  </h1>
 */
 
 
 /* ==================================================
-    RENDERING TO THE DOM
-================================================== */
+RENDERING TO THE DOM
+==================================================
+
+React only displays something when we call:
+
+  root.render(element)
+
+Example:
+*/
 
 root.render(
   React.createElement(
     "h1",
     {
-      id: "recipe-0",        // Standard HTML attribute
-      "data-type": "title"   // Custom data attribute
+      id: "recipe-0",
+      "data-type": "title"
     },
-    "Baked Salmon"           // Text content
+    "Baked Salmon"
   )
 );
 
-
-/* ==================================================
-WHAT HAPPENS INTERNALLY?
-==================================================
-
-1. React.createElement creates a Virtual DOM object.
-2. React prepares it for rendering.
-3. React updates the real DOM efficiently.
-4. The browser displays the final HTML.
-
+/*
 Before rendering:
   <div id="root"></div>
 
 After rendering:
   <div id="root">
-      <h1 id="recipe-0" data-type="title">
-          Baked Salmon
-      </h1>
+    <h1 id="recipe-0" data-type="title">
+      Baked Salmon
+    </h1>
   </div>
-
-React controls everything inside the root container.
 */
 
+
+/* ==================================================
+VIRTUAL DOM (Concept)
+==================================================
+
+1. React.createElement creates a Virtual DOM object.
+2. React compares it with the previous version.
+3. React updates only the changed parts.
+4. Browser updates efficiently.
+
+This makes React fast.
+*/
+
+
+/* ==================================================
+CHILDREN
+==================================================
+
+Every additional argument passed after props
+becomes a child element.
+
+React stores children inside:
+
+  props.children
+
+Example:
+*/
+
+const ingredients = React.createElement(
+  "ul",
+  null,
+  React.createElement("li", null, "1 lb Salmon"),
+  React.createElement("li", null, "1 cup Pine Nuts"),
+  React.createElement("li", null, "2 cups Butter Lettuce"),
+  React.createElement("li", null, "1 Yellow Squash"),
+  React.createElement("li", null, "1/2 cup Olive Oil"),
+  React.createElement("li", null, "3 cloves of Garlic")
+);
 
 /*
-==================================================
-NOTE:
-- No App component is defined here.
-- Therefore, DO NOT export App.
-- This file directly renders a React element.
-==================================================
+Here:
+- "ul" is the root element.
+- The six "li" elements are its children.
+- React automatically creates an array of children.
+- That array is stored in props.children.
 */
-//So, a React element is just a JavaScript literal that tells React how to construct the DOM element.
 
-/*When you write:
-
-<h1>Hello</h1>
-
-
-React actually creates this object:
-
-{
-  $$typeof: Symbol(React.element),
-  type: "h1",
-  props: { children: "Hello" }
-}
-
-
-That object is called a React Element.
-$$typeof
-
-It is a special internal property used by React
-
-It tells React:
-
-"This object is a React Element."
-The type property of the React element tells React what type of HTML or SVG ele‐
-ment to create. The props property represents the data and child elements required to
-construct a DOM element. The children property is for displaying other nested ele‐
-ments as text.
-
-
-We can render a React element, including its children, to the DOM with
-ReactDOM.render. The element that we wish to render is passed as the first argu‐
-ment and the second argument is the target node, where we should render the ele‐
-ment:*/
-var dish = React.createElement("h1", null, "Baked Salmon")
-ReactDOM.render(dish, document.getElementById('react-container'))
-// Rendering the title element to the DOM would add a heading-one element to the div with the id of react-container, which we would already have defined in our HTML.
-/*All of the DOM rendering functionality in React has been moved to ReactDOM
-because we can use React to build native applications as well. The browser is just one
-target for React.
- */
-
+// To display it:
+root.render(ingredients);
