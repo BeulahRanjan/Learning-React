@@ -151,6 +151,7 @@ This makes React fast.
 */
 
 
+
 /* ==================================================
 CHILDREN
 ==================================================
@@ -186,3 +187,64 @@ Here:
 
 // To display it:
 root.render(ingredients);
+
+
+
+/* ==================================================
+ CONSTRUCTING ELEMENTS WITH DATA
+==================================================
+
+One major advantage of React is separating data from UI.
+
+Instead of hardcoding list items manually,
+we can store the data in a JavaScript array
+and dynamically generate UI elements from it.
+
+Example: Storing data in an array
+*/
+
+const items = [
+  "1 lb Salmon",
+  "1 cup Pine Nuts",
+  "2 cups Butter Lettuce",
+  "1 Yellow Squash",
+  "1/2 cup Olive Oil",
+  "3 cloves of Garlic"
+];
+
+/*
+We can use Array.map() to convert each item
+into a React element.
+*/
+
+const ingredientsList = React.createElement(
+  "ul",
+  { className: "ingredients" },
+  items.map((ingredient, i) =>
+    React.createElement("li", { key: i }, ingredient)
+  )
+);
+
+/*
+Why use map()?
+
+- It creates one <li> for each item in the array.
+- Keeps UI dynamic and reusable.
+- Separates data from structure.
+
+Why is "key" needed?
+
+- React requires a unique key for each element in a list.
+- Keys help React efficiently update the DOM.
+- The key should be unique.
+- Here, we use the array index (i) as a simple key.
+
+Important:
+Keys are used internally by React.
+They are NOT displayed in the UI.
+*/
+
+/*
+To render:
+root.render(ingredientsList);
+*/
