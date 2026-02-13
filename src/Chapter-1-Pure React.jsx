@@ -248,3 +248,56 @@ They are NOT displayed in the UI.
 To render:
 root.render(ingredientsList);
 */
+
+/* ==================================================
+ REACT COMPONENTS
+==================================================
+
+Every user interface is made up of smaller parts.
+
+In React, each part of the UI is called a "Component".
+
+Each section of the UI (title, ingredients, instructions)
+can be built as a reusable component.
+*/
+
+
+/* 
+WHY COMPONENTS ARE IMPORTANT ?
+1. Reusability
+   - Write once, use many times.
+   - Same structure can display different data.
+
+2. Scalability
+   - Whether we display 1 recipe or 10,000 recipes,
+     we simply create more instances of the component.
+
+3. Organization
+   - Break large UI into smaller, manageable pieces.
+   - Makes code easier to read and maintain.
+
+4. Separation of Concerns
+   - Each component handles its own structure and logic.
+*/
+
+
+/* 
+THINKING IN COMPONENTS
+When building a UI:
+
+✔ Look for repeated patterns.
+✔ Break the UI into reusable pieces.
+✔ Turn each piece into a component.
+
+
+This creates a component tree.
+*/
+
+
+/*
+THREE WAYS TO CREATE COMPONENTS
+- createClass (Older method)
+- ES6 Class Components
+- Stateless Functional Components
+   
+*/
