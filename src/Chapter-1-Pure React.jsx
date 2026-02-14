@@ -296,7 +296,9 @@ This creates a component tree.
 
 /*
 THREE WAYS TO CREATE COMPONENTS
-- createClass (Older method)
+==================================================
+- CreateClass (Older method)
+==================================================
 When React was introduced in 2013, the ONLY way to
 create components was using React.createClass().
 
@@ -364,19 +366,19 @@ Inside createClass:
 - Data passed in is available as this.props.
 */
 
-const IngredientsList = React.createClass({
-  displayName: "IngredientsList",
+// const IngredientsList = React.createClass({
+//   displayName: "IngredientsList",
 
-  render() {
-    return React.createElement(
-      "ul",
-      { className: "ingredients" },
-      this.props.items.map((ingredient, i) =>
-        React.createElement("li", { key: i }, ingredient)
-      )
-    );
-  }
-});
+//   render() {
+//     return React.createElement(
+//       "ul",
+//       { className: "ingredients" },
+//       this.props.items.map((ingredient, i) =>
+//         React.createElement("li", { key: i }, ingredient)
+//       )
+//     );
+//   }
+// });
 
 
 /* 
@@ -422,22 +424,22 @@ Instead of writing logic directly inside render(),
 we can create helper methods.
 */
 
-const IngredientsList = React.createClass({
-  displayName: "IngredientsList",
+// const IngredientsList = React.createClass({
+//   displayName: "IngredientsList",
 
-  renderListItem(ingredient, i) {
-    return React.createElement("li", { key: i }, ingredient);
-  },
+//   renderListItem(ingredient, i) {
+//     return React.createElement("li", { key: i }, ingredient);
+//   },
 
-  render() {
-    return React.createElement(
-      "ul",
-      { className: "ingredients" },
-      this.props.items.map(this.renderListItem)
-    );
-  }
-});
-
+//   render() {
+//     return React.createElement(
+//       "ul",
+//       { className: "ingredients" },
+//       this.props.items.map(this.renderListItem)
+//     );
+//   }
+// });
+//React calls render(), and during its execution, map() invokes renderListItem() multiple times to create child elements.
 
 /* 
 WHY THIS IS BETTER
@@ -483,5 +485,49 @@ FINAL OUTPUT IN THE DOM
 </ul>
 */
 
+
+/*==================================================
+ES6 CLASS COMPONENTS (SHORT NOTES)
+==================================================
+
+ES6 introduced classes in JavaScript.
+React uses these classes to create components by
+extending React.Component.
+*/
+
+
+/* 
+CREATING A COMPONENT
+
+class IngredientsList extends React.Component {
+
+  renderListItem(ingredient, i) {
+    return React.createElement("li", { key: i }, ingredient);
+  }
+
+  render() {
+    return React.createElement(
+      "ul",
+      { className: "ingredients" },
+      this.props.items.map(this.renderListItem)
+    );
+  }
+}
+
+
+/* 
+KEY POINTS
+- Components extend React.Component
+- render() is mandatory
+- render() must return a React element
+- this.props contains data passed to the component
+- Helper methods keep render() clean
+*/
+
+
+/* 
+- ES6 classes do NOT auto-bind "this"
+- Binding is required if helper methods use "this"
+*/
 
 
