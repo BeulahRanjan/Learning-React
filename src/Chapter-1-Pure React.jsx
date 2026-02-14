@@ -297,7 +297,191 @@ This creates a component tree.
 /*
 THREE WAYS TO CREATE COMPONENTS
 - createClass (Older method)
-- ES6 Class Components
-- Stateless Functional Components
-   
+When React was introduced in 2013, the ONLY way to
+create components was using React.createClass().
+
+Even though newer methods exist today, many older
+React codebases still use createClass.
+
+NOTE:
+- React team has indicated createClass may be
+  deprecated in the future.
+- Still important for understanding legacy React.
 */
+
+
+/* 
+CREATING A COMPONENT WITH createClass
+
+A React component is an object that describes
+a reusable piece of UI.
+
+Below is an IngredientsList component that renders
+a <ul> with <li> children.
+*/
+
+const IngredientsList = React.createClass({
+  displayName: "IngredientsList",
+
+  render() {
+    return React.createElement(
+      "ul",
+      { className: "ingredients" },
+      React.createElement("li", null, "1 lb Salmon"),
+      React.createElement("li", null, "1 cup Pine Nuts"),
+      React.createElement("li", null, "2 cups Butter Lettuce"),
+      React.createElement("li", null, "1 Yellow Squash"),
+      React.createElement("li", null, "1/2 cup Olive Oil"),
+      React.createElement("li", null, "3 cloves of Garlic")
+    );
+  }
+});
+
+
+/* 
+RENDERING A COMPONENT
+
+- Components are rendered just like elements.
+- The component itself becomes the element type.
+*/
+
+const list = React.createElement(IngredientsList, null, null);
+
+ReactDOM.render(
+  list,
+  document.getElementById("react-container")
+);
+
+
+/*
+USING PROPS TO PASS DATA
+
+Components become reusable when we pass data
+to them using props.
+
+Inside createClass:
+- "this" refers to the component instance.
+- Data passed in is available as this.props.
+*/
+
+const IngredientsList = React.createClass({
+  displayName: "IngredientsList",
+
+  render() {
+    return React.createElement(
+      "ul",
+      { className: "ingredients" },
+      this.props.items.map((ingredient, i) =>
+        React.createElement("li", { key: i }, ingredient)
+      )
+    );
+  }
+});
+
+
+/* 
+PASSING DATA INTO COMPONENT
+
+const items = [
+  "1 lb Salmon",
+  "1 cup Pine Nuts",
+  "2 cups Butter Lettuce",
+  "1 Yellow Squash",
+  "1/2 cup Olive Oil",
+  "3 cloves of Garlic"
+];
+
+ReactDOM.render(
+  React.createElement(IngredientsList, { items }, null),
+  document.getElementById("react-container")
+);
+
+
+/* 
+WHY DO WE USE "key"?
+- When rendering lists using map(),
+  React requires a unique "key" for each child.
+- Keys help React update the DOM efficiently.
+- Here, the array index is used as the key.
+*/
+
+
+/* 
+COMPONENTS ARE OBJECTS
+
+- Components encapsulate UI logic and structure.
+- They behave like classes.
+- Methods can be added to organize rendering logic.
+*/
+
+
+/*
+USING A CUSTOM METHOD
+
+Instead of writing logic directly inside render(),
+we can create helper methods.
+*/
+
+const IngredientsList = React.createClass({
+  displayName: "IngredientsList",
+
+  renderListItem(ingredient, i) {
+    return React.createElement("li", { key: i }, ingredient);
+  },
+
+  render() {
+    return React.createElement(
+      "ul",
+      { className: "ingredients" },
+      this.props.items.map(this.renderListItem)
+    );
+  }
+});
+
+
+/* 
+WHY THIS IS BETTER
+
+✔ Cleaner render() method
+✔ Better readability
+✔ Easier maintenance
+✔ Clear separation of concerns
+✔ Scales better for large apps
+*/
+
+
+/*
+COMPONENT CLASSES AS TYPES
+
+
+When creating elements:
+
+- HTML/SVG elements → use strings
+  React.createElement("ul")
+
+- Components → use the component class directly
+  React.createElement(IngredientsList)
+
+This is why IngredientsList is NOT in quotes.
+
+React:
+- Creates an instance of the component
+- Manages its lifecycle
+- Calls render() internally
+*/
+
+
+/* 
+FINAL OUTPUT IN THE DOM
+<ul data-react-root class="ingredients">
+  <li>1 lb Salmon</li>
+  <li>1 cup Pine Nuts</li>
+  <li>2 cups Butter Lettuce</li>
+  <li>1 Yellow Squash</li>
+  <li>1/2 cup Olive Oil</li>
+  <li>3 cloves of Garlic</li>
+</ul>
+*/
+
+
+
