@@ -531,3 +531,87 @@ KEY POINTS
 */
 
 
+/* ==================================================
+STATELESS FUNCTIONAL COMPONENTS 
+==================================================
+
+Stateless functional components are simple JavaScript
+functions that take props and return React elements.
+
+They are NOT objects, so they do not have:
+- this
+- state
+- lifecycle methods
+*/
+
+
+/*
+KEY CHARACTERISTICS
+
+- Pure functions
+- Take props as input
+- Return UI (React elements)
+- No side effects
+- Very easy to test
+- Keep application architecture simple
+*/
+
+
+/* 
+WHY USE THEM?
+
+✔ Cleaner and simpler syntax
+✔ Encourages functional programming
+✔ Better readability
+✔ Promised performance benefits
+✔ Preferred whenever state is not needed
+*/
+
+
+/* 
+EXAMPLE
+const IngredientsList = props =>
+  React.createElement(
+    "ul",
+    { className: "ingredients" },
+    props.items.map((ingredient, i) =>
+      React.createElement("li", { key: i }, ingredient)
+    )
+  );
+
+
+/* 
+USING DESTRUCTURING
+
+Destructuring removes repetitive dot notation.
+*/
+
+// const IngredientsList = ({ items }) =>
+//   React.createElement(
+//     "ul",
+//     { className: "ingredients" },
+//     items.map((ingredient, i) =>
+//       React.createElement("li", { key: i }, ingredient)
+//     )
+//   );
+
+
+/* ==================================================
+IMPORTANT NOTES
+==================================================
+
+- Use const to define functional components
+- const prevents accidental reassignment
+- Cannot be used when "this" or state is required
+- Fall back to class components if needed
+*/
+
+// ==============================================
+//  DOM Rendering in React 
+// ============================================
+
+// React separates data (state/props) from the DOM. When application data changes, React re-renders the UI 
+// using ReactDOM.render. Instead of rebuilding the entire DOM, React compares the new data with the previous 
+// data and updates only the DOM elements that changed. This minimizes expensive DOM insertions and makes UI updates 
+// fast and efficient.
+
