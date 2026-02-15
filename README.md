@@ -28,3 +28,22 @@
   - Using createRoot() and root.render() to display components.
   ## Factories
   - Older pattern for creating React elements without JSX.
+
+  
+### Chapter-2- React with JSX
+  ## React Elements as JSX
+  - Shows how React elements are written using JSX instead of React.createElement.
+  ## JSX Tips
+  - Covers best practices, syntax rules, and common gotchas when writing JSX.
+  ## Babel
+  - Explains how Babel transpiles JSX and modern JavaScript into browser-compatible code.
+  ## Recipes as JSX
+  - Applies JSX concepts by building recipe components using reusable React elements.
+  ## Intro to Webpack
+  - Provides an overview of Webpack and how it bundles assets for modern web apps.
+  ## Webpack Loaders
+  - Details how loaders transform files like JSX, CSS, and images during the build process.
+  ## Recipes App with a Webpack Build
+  - Walks through building and bundling the Recipes app using Webpack for production.
+  
+
