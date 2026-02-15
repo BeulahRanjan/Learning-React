@@ -494,7 +494,7 @@ ES6 introduced classes in JavaScript.
 React uses these classes to create components by
 extending React.Component.
 */
-
+//In React, a React.Component is the base class for defining components using the ES6 class syntax.
 
 /* 
 CREATING A COMPONENT
