@@ -230,9 +230,9 @@ Uglify Plugin
 - Automatically minifies JavaScript.
 - Source maps keep debugging possible.
 
-========================
+====================
 create-react-app
-=======================
+====================
 - Automatically sets up Webpack, Babel, and tooling.
 - No manual configuration needed.
 - Provides dev server, testing, and production build. */
