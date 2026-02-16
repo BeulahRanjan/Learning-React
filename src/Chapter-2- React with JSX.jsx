@@ -77,96 +77,65 @@ What is Production?
 Production is the live version of an application that is deployed on a server and used by real users.
 
 In production:
+- Code is optimized for speed and performance
+- Debugging tools and extra logs are removed
+- Files are minified and bundled
+- Stability and security are prioritized
+- Webpack is mainly used to prepare code for production, not just development.
 
-Code is optimized for speed and performance
-
-Debugging tools and extra logs are removed
-
-Files are minified and bundled
-
-Stability and security are prioritized
-
-Webpack is mainly used to prepare code for production, not just development.
-
-Why Webpack is Needed
-
+Why Webpack is Needed ?
 When working in production with React, developers must handle:
-
-JSX and ES6+ transformation
-
-Dependency management
-
-Image and CSS optimization
-
-Performance optimization
-
-Webpack provides a single solution for all these needs.
+- JSX and ES6+ transformation
+- Dependency management
+- Image and CSS optimization
+- Performance optimization
+- Webpack provides a single solution for all these needs.
 
 What is a Module Bundler?
-
 A module bundler takes multiple files such as:
-
-JavaScript
-
-JSX
-
-ES6+
-
-CSS / LESS
-
-Images
-
-and combines them into one or more optimized bundle files that the browser can load.
+- JavaScript
+- JSX
+- ES6+
+- CSS / LESS
+- Images
+- and combines them into one or more optimized bundle files that the browser can load.
 
 Benefits of Webpack
 1. Modularity
-
-Code is divided into small, reusable modules
-
-Easier to maintain and collaborate on
-
-Improves code organization
+- Code is divided into small, reusable modules
+- Easier to maintain and collaborate on
+- Improves code organization
 
 2. Network Performance
-
-Each script tag creates an HTTP request
-
-Multiple requests cause latency
-
-Webpack bundles dependencies into a single file
+- Each script tag creates an HTTP request
+- Multiple requests cause latency
+- Webpack bundles dependencies into a single file
 
 Fewer requests = faster page load
 
+================================
 Additional Features of Webpack
-Transpiling
+===============================
 
-Uses Babel to convert ES6+ and JSX into browser-compatible JavaScript
+- Transpiling
+    - Uses Babel to convert ES6+ and JSX into browser-compatible JavaScript
 
-Code Splitting
+- Code Splitting
+    - Breaks code into chunks loaded only when needed
+    - Improves initial load time
 
-Breaks code into chunks loaded only when needed
+- Minification
+    - Removes whitespace, comments, and unused code
+    - Reduces file size
 
-Improves initial load time
+- Feature Flagging
+    - Enables code for specific environments or users
+    - Useful for testing new features
 
-Minification
-
-Removes whitespace, comments, and unused code
-
-Reduces file size
-
-Feature Flagging
-
-Enables code for specific environments or users
-
-Useful for testing new features
-
-Hot Module Replacement (HMR)
-
-Updates only changed modules
-
-No full page reload
-
-Preserves application state */
+- Hot Module Replacement (HMR)
+    - Updates only changed modules
+    - No full page reload
+    - Preserves application state */
 
 
 /*
@@ -178,3 +147,92 @@ Loaders in Webpack are functions that transform source code during the build pro
 They allow Webpack to handle files that browsers cannot read natively, such as ES6, JSX, and SCSS. Loaders like babel-loader transpile modern 
 JavaScript and JSX into browser-compatible JavaScript, while styling loaders such as css-loader process CSS/SCSS files and bundle styles directly into JavaScript. 
 This eliminates the need for separate <link> tags for stylesheets. */
+
+/*
+
+==================
+Why use Webpack
+=================
+- Bundles all JavaScript modules into a single file for the browser.
+- Makes large applications easier to manage and scale.
+
+- Modularity
+    - Code is split into separate files (modules).
+    - Each module handles a specific responsibility.
+    - Easier for teams to work in parallel.
+
+- Composing Components
+    - Build small, reusable React components.
+    - Combine them to form larger features.
+    - Improves readability, testing, and maintainability.
+
+- Speed
+    - Bundling reduces multiple HTTP requests into one.
+    - Minification reduces file size.
+    - Faster page load times.
+
+- Consistency
+    - Babel allows use of modern JavaScript and JSX.
+    - Code works across browsers regardless of native support.
+
+- Breaking Components into Modules
+    - Split large components into smaller ones (e.g., Recipe → Ingredients, Instructions).
+    - Each component focuses on one task.
+    - Promotes reuse and clarity.
+
+
+======================
+ES6 Import Statements
+=====================
+- Used to import/export modules.
+- Babel converts them to CommonJS (require) for browser compatibility.
+
+=========================
+Webpack Configuration
+=========================
+- entry: starting point of the app.
+- output: where the bundled file is saved.
+- loaders: transform files (e.g., Babel for JSX/ES6).
+
+================
+Babel Loader
+===============
+- Transpiles JSX and modern JavaScript to ES5.
+- Uses presets like env and react.
+
+=================
+Running Webpack
+=================
+- webpack command creates the bundle.
+- Errors usually come from broken imports or paths.
+
+===================
+Loading the Bundle
+===================
+- HTML loads one file: bundle.js.
+- React app mounts to a target <div>.
+
+==================
+Source Mapping
+=================
+- Maps bundled code back to original source files.
+- Makes debugging easier in browser dev tools.
+
+=======================
+Optimizing the Bundle
+========================
+- Minification removes whitespace and shortens variable names.
+- Reduces file size and improves performance.
+
+========================
+Uglify Plugin
+=======================
+- Automatically minifies JavaScript.
+- Source maps keep debugging possible.
+
+========================
+create-react-app
+=======================
+- Automatically sets up Webpack, Babel, and tooling.
+- No manual configuration needed.
+- Provides dev server, testing, and production build. */
