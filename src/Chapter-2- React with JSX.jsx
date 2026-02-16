@@ -167,3 +167,14 @@ Updates only changed modules
 No full page reload
 
 Preserves application state */
+
+
+/*
+================
+Webpack Loaders
+================
+
+Loaders in Webpack are functions that transform source code during the build process. 
+They allow Webpack to handle files that browsers cannot read natively, such as ES6, JSX, and SCSS. Loaders like babel-loader transpile modern 
+JavaScript and JSX into browser-compatible JavaScript, while styling loaders such as css-loader process CSS/SCSS files and bundle styles directly into JavaScript. 
+This eliminates the need for separate <link> tags for stylesheets. */
