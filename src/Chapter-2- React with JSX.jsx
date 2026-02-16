@@ -50,3 +50,15 @@ By blending JavaScript and XML-style syntax, JSX enables developers to build reu
 - Evaluation: Expressions inside {} are executed (string concatenation, math, function calls).
 - Mapping arrays: Use map() to convert arrays into JSX elements (each item needs a key).
 - JSX compilation: Browsers don’t understand JSX directly—Babel converts JSX into createElement calls. */
+
+
+/*
+=========================
+Babel 
+========================
+
+Babel is a JavaScript transpiler that converts modern JavaScript (ES6/ES7) and JSX into older JavaScript (ES5) that browsers can understand. 
+Since browsers do not support JSX and may not support the latest JavaScript features, Babel is used to make the code compatible. Originally called 6to5, 
+it was renamed Babel in 2015 and is widely used in production. Babel can transpile code in the browser using text/babel (for learning), but in production 
+it is typically used with tools like webpack. */
+
