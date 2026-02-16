@@ -38,3 +38,15 @@ JSX supports:
 
 By blending JavaScript and XML-style syntax, JSX enables developers to build reusable, component-based user interfaces in a clear and declarative way.
 */
+
+/*
+====================
+ JSX Tips 
+====================
+
+- Nested components: JSX lets you place components inside other components.
+- className: Use className instead of class (because class is reserved in JavaScript).
+- JavaScript expressions: Use {} to evaluate variables, values, and expressions inside JSX.
+- Evaluation: Expressions inside {} are executed (string concatenation, math, function calls).
+- Mapping arrays: Use map() to convert arrays into JSX elements (each item needs a key).
+- JSX compilation: Browsers don’t understand JSX directly—Babel converts JSX into createElement calls. */
