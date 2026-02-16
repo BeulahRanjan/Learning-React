@@ -40,9 +40,9 @@ By blending JavaScript and XML-style syntax, JSX enables developers to build reu
 */
 
 /*
-====================
+==============
  JSX Tips 
-====================
+==============
 
 - Nested components: JSX lets you place components inside other components.
 - className: Use className instead of class (because class is reserved in JavaScript).
