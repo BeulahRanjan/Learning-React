@@ -1,6 +1,6 @@
 /*
 ==================================================
-REACT WITH JSX –
+REACT WITH JSX – 
 ==================================================
 This section introduces JSX as the syntax extension used by React to describe UI elements.
 It explains how JSX maps to React elements, shares practical tips and best practices,
