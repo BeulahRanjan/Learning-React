@@ -54,3 +54,68 @@
 
 // React will show a warning, helping us detect the bug early.
 
+// ==============================
+// Default Props 
+// ==============================
+
+// Default props in React are used to provide fallback values when a component does not receive certain properties. 
+// This prevents errors and ensures the component still renders meaningful output even if some props are missing.
+
+// In older React using createClass, default props are defined using the getDefaultProps() method.
+
+// 🔹 Example Without Default Props
+// render(<Summary />, document.getElementById('react-container'))
+
+// If no props are provided and the component expects them, it may show undefined or cause errors.
+
+// 🔹 Example With Default Props
+// const Summary = createClass({
+//   propTypes: {
+//     ingredients: PropTypes.number,
+//     steps: PropTypes.number,
+//     title: PropTypes.string
+//   },
+
+//   getDefaultProps() {
+//     return {
+//       ingredients: 0,
+//       steps: 0,
+//       title: "[untitled recipe]"
+//     }
+//   },
+
+//   render() {
+//     const { ingredients, steps, title } = this.props
+//     return (
+//       <div>
+//         <h1>{title}</h1>
+//         <p>
+//           {ingredients} Ingredients | {steps} Steps
+//         </p>
+//       </div>
+//     )
+//   }
+// })
+
+// Now if we render:
+
+// render(<Summary />, document.getElementById('react-container'))
+
+// Output will be:
+
+// [untitled recipe]
+// 0 Ingredients | 0 Steps
+// 🎯 Why Default Props Are Useful
+
+// Prevents undefined errors
+
+// Makes components more flexible
+
+// Ensures UI still displays meaningful data
+
+// Reduces debugging issues
+
+// 🧠 Simple Idea
+
+// If a parent does not send a prop → React uses the default value instead.
+
