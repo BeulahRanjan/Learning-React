@@ -105,7 +105,7 @@
 
 // [untitled recipe]
 // 0 Ingredients | 0 Steps
-// 🎯 Why Default Props Are Useful
+//  Why Default Props Are Useful
 
 // Prevents undefined errors
 
