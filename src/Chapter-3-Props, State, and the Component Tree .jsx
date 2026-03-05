@@ -105,14 +105,11 @@
 
 // [untitled recipe]
 // 0 Ingredients | 0 Steps
-//  Why Default Props Are Useful
 
+//  Why Default Props Are Useful?
 // Prevents undefined errors
-
 // Makes components more flexible
-
 // Ensures UI still displays meaningful data
-
 // Reduces debugging issues
 
 //  Simple Idea -
