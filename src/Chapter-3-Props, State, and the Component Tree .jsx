@@ -68,7 +68,7 @@
 
 // If no props are provided and the component expects them, it may show undefined or cause errors.
 
-// 🔹 Example With Default Props
+//  Example With Default Props
 // const Summary = createClass({
 //   propTypes: {
 //     ingredients: PropTypes.number,
