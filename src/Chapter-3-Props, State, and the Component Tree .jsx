@@ -113,6 +113,5 @@
 // Reduces debugging issues
 
 //  Simple Idea -
-
 // If a parent does not send a prop → React uses the default value instead.
 
