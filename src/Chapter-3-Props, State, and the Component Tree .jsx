@@ -102,7 +102,6 @@
 // render(<Summary />, document.getElementById('react-container'))
 
 // Output will be:
-
 // [untitled recipe]
 // 0 Ingredients | 0 Steps
 
