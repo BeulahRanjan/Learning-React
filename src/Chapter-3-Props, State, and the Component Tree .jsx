@@ -63,7 +63,7 @@
 
 // In older React using createClass, default props are defined using the getDefaultProps() method.
 
-// 🔹 Example Without Default Props
+// Example Without Default Props
 // render(<Summary />, document.getElementById('react-container'))
 
 // If no props are provided and the component expects them, it may show undefined or cause errors.
