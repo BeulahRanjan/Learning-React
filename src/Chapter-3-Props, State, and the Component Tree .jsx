@@ -288,7 +288,13 @@
 // }
 // Explanation of the Example
 
-// ref="_title" and ref="_color" create references to the input fields.
+// _title.value = '';
+// _color.value = '#000000';
+
+// These lines run after the form is submitted.
+
+// So they are used to reset the form fields so the user can enter a new color again.
+// // ref="_title" and ref="_color" create references to the input fields.
 
 // These refs are stored in this.refs and can be accessed as:
 
