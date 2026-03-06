@@ -139,3 +139,99 @@
 // - The title length must be less than or equal to 20 characters
 
 // If these conditions are not satisfied, React prints a warning in the console.
+
+//========================================================
+//  ES6 Classes and Stateless Functional Components 
+//========================================================
+
+// In React, property validation (propTypes) and default values (defaultProps) can also be used with ES6 class components and stateless functional components, not just with React.createClass. The syntax is slightly different.
+
+// 1. ES6 Class Components
+
+// For ES6 classes, propTypes and defaultProps are defined outside the class after the class declaration.
+
+// Example:
+
+// class Summary extends React.Component {
+//   render() {
+//     const { ingredients, steps, title } = this.props
+//     return (
+//       <div>
+//         <h1>{title}</h1>
+//         <p>{ingredients} Ingredients | {steps} Steps</p>
+//       </div>
+//     )
+//   }
+// }
+
+// Summary.propTypes = {
+//   ingredients: PropTypes.number,
+//   steps: PropTypes.number,
+//   title: PropTypes.string
+// }
+
+// Summary.defaultProps = {
+//   ingredients: 0,
+//   steps: 0,
+//   title: "[recipe]"
+// }
+// 2. Stateless Functional Components
+
+// Functional components can also use propTypes and defaultProps.
+
+// Example:
+
+// const Summary = ({ ingredients, steps, title }) => (
+//   <div>
+//     <h1>{title}</h1>
+//     <p>{ingredients} Ingredients | {steps} Steps</p>
+//   </div>
+// )
+
+// Summary.propTypes = {
+//   ingredients: PropTypes.number.isRequired,
+//   steps: PropTypes.number.isRequired
+// }
+
+// Summary.defaultProps = {
+//   ingredients: 1,
+//   steps: 1
+// }
+// 3. Default Values in Function Parameters
+
+// In functional components, default values can also be set directly in the parameters.
+
+// const Summary = ({ ingredients = 0, steps = 0, title = "[recipe]" }) => {
+//   return (
+//     <div>
+//       <h1>{title}</h1>
+//       <p>{ingredients} Ingredients | {steps} Steps</p>
+//     </div>
+//   )
+// }
+// 4. Static Properties in Classes
+
+// Modern JavaScript allows defining propTypes and defaultProps inside the class using static properties, making the code cleaner and more organized.
+
+// Example:
+
+// class Summary extends React.Component {
+//   static propTypes = {
+//     ingredients: PropTypes.number,
+//     steps: PropTypes.number
+//   }
+
+//   static defaultProps = {
+//     ingredients: 0,
+//     steps: 0
+//   }
+
+//   render() {
+//     const { ingredients, steps } = this.props
+//     return <p>{ingredients} Ingredients | {steps} Steps</p>
+//   }
+// }
+
+// ✅ Conclusion:
+// Using propTypes and defaultProps in React components helps validate properties, provide default values, 
+// and make components easier to reuse while preventing bugs through console warnings.
