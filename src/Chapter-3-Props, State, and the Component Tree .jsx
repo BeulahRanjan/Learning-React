@@ -114,3 +114,28 @@
 //  Simple Idea -
 // If a parent does not send a prop → React uses the default value instead.
 
+//==================================
+// Custom property validation
+//==================================
+// Custom property validation in React allows developers to create their own validation rules for props when built-in
+//  validators (like PropTypes.string, PropTypes.number, etc.) are not enough. A custom validator is a function that 
+// checks a prop’s value and returns an Error if the validation fails or null if the value is valid. 
+// This helps enforce specific conditions such as checking if a value is within a range or if a string length is limited.
+
+// Example
+// propTypes: {
+//   ingredients: PropTypes.number,
+//   steps: PropTypes.number,
+//   title: (props, propName) =>
+//     (typeof props[propName] !== 'string')
+//       ? new Error("A title must be a string")
+//       : (props[propName].length > 20)
+//       ? new Error("title is over 20 characters")
+//       : null
+// }
+
+// Here the validator checks:
+// - The title must be a string
+// - The title length must be less than or equal to 20 characters
+
+// If these conditions are not satisfied, React prints a warning in the console.
