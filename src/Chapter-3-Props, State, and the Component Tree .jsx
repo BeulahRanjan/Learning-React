@@ -237,7 +237,9 @@
 // and make components easier to reuse while preventing bugs through console warnings.
 
 
-// Refs in React
+// ==========
+// Refs
+//=========== 
 
 // Refs (References) in React are used to directly access DOM elements (such as input fields, buttons, etc.) inside a component. They allow a React component to interact with child elements, especially when dealing with user input, form handling, focusing elements, or resetting fields.
 
