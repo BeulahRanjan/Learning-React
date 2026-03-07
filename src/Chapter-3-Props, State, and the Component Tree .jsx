@@ -317,3 +317,93 @@
 // After submission, the form fields are reset and the cursor is focused again on the title input.
 
 // Refs provide a way for React components to interact directly with DOM elements, making them useful for handling forms and user input.
+
+//===================
+//Inverse Data Flow 
+//====================
+
+// Inverse Data Flow is a technique in React where data is sent from a child component to a parent component using a callback function.
+
+// Normally, React follows one-way data flow, where data moves from:
+
+// Parent → Child
+
+// using props.
+
+// However, sometimes a child component collects data, such as from a form. In this situation, the child needs to send the data back to the parent, which is called Inverse Data Flow.
+
+// In inverse data flow, the parent passes a function to the child as a prop, and the child calls that function to send data back to the parent.
+
+// Why Inverse Data Flow Is Used
+
+// In React, the parent component usually manages the application state because multiple components may need the same data. This follows the principle of Single Source of Truth, where one component controls the data.
+
+// For example:
+
+// App (Parent)
+//  ├── AddColorForm (collects data)
+//  └── ColorList (displays data)
+
+// Here:
+
+// AddColorForm collects the color from the user.
+
+// ColorList displays the colors.
+
+// Since both components depend on the same data, the state is stored in the parent. Therefore, the child must send the collected data back to the parent.
+
+// Example
+// Parent Component
+
+// The parent defines a function and passes it to the child.
+
+// const logColor = (title, color) => {
+//   console.log(`New Color: ${title} | ${color}`)
+// }
+
+// <AddColorForm onNewColor={logColor} />
+
+// Here:
+
+// onNewColor is a prop
+
+// It contains a function from the parent
+
+// Child Component
+
+// The child collects input and calls the parent function.
+
+// submit() {
+//   const { _title, _color } = this.refs
+//   this.props.onNewColor(_title.value, _color.value)
+// }
+
+// When the user submits the form:
+
+// The child collects the input values.
+
+// The child calls the function received through props.
+
+// The data is sent to the parent.
+
+// Flow of Data
+// User Input
+//      ↓
+// Child Component (AddColorForm)
+//      ↓
+// Calls function from props
+//      ↓
+// Parent Component receives data
+//      ↓
+// Parent updates state or performs an action
+// Key Points
+
+// React normally uses one-way data flow (Parent → Child).
+
+// When a child needs to send data back, inverse data flow is used.
+
+// The parent passes a callback function as a prop.
+
+// The child calls the function to send data to the parent.
+
+// The parent manages the state and updates the application.
