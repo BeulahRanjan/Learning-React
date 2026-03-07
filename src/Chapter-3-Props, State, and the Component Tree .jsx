@@ -760,3 +760,94 @@
 
 // ✅ One-line idea
 // In React, state stores changing data inside a component, and whenever state changes, React automatically updates the UI.
+
+// Initializing State from Properties in React
+
+// Sometimes a React component needs to initialize its state using values passed through props. This pattern is used mainly when building reusable components that might receive different initial values from different parent components.
+
+// Normally:
+
+// Props → data passed from parent (immutable)
+
+// State → data managed inside the component (mutable)
+
+// In some cases, we use props to set the initial state, so the component can later update that value internally.
+
+// 🔹 Using componentWillMount() (Older Method)
+
+// When using React.createClass, state can be initialized from props inside the componentWillMount() lifecycle method.
+
+// This method runs once before the component is rendered.
+
+// Example
+// const StarRating = createClass({
+//   getInitialState() {
+//     return {
+//       starsSelected: 0
+//     }
+//   },
+
+//   componentWillMount() {
+//     const { starsSelected } = this.props
+//     if (starsSelected) {
+//       this.setState({ starsSelected })
+//     }
+//   }
+// })
+// How it works
+
+// Initial state starts as:
+
+// starsSelected = 0
+
+// If the parent sends a prop:
+
+// <StarRating starsSelected={3} />
+
+// componentWillMount() updates the state:
+
+// state.starsSelected = 3
+
+// So the component starts with 3 stars selected.
+
+// 🔹 Using Constructor (Modern ES6 Class Method)
+
+// In ES6 class components, the constructor is the preferred way.
+
+// Example
+// class StarRating extends React.Component {
+//   constructor(props) {
+//     super(props)
+
+//     this.state = {
+//       starsSelected: props.starsSelected || 0
+//     }
+//   }
+// }
+
+// Explanation:
+
+// props.starsSelected → value passed from parent
+
+// || 0 → if no value is provided, default is 0
+
+// 🔹 Example Usage
+// <StarRating totalStars={7} starsSelected={3} />
+
+// Result:
+
+// Total stars: 7
+// Initially selected: 3
+// 🔹 Important Note
+
+// React developers usually avoid copying props into state, because it can cause synchronization problems.
+
+// This pattern should be used only when necessary, such as:
+
+// Creating reusable UI components
+
+// Setting initial default values from props
+
+// ✅ One-line summary
+
+// Initializing state from properties means using values passed through props to set the initial state of a React component so that the component can later update that value internally.
