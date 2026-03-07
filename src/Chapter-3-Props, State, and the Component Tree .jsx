@@ -761,7 +761,9 @@
 // ✅ One-line idea
 // In React, state stores changing data inside a component, and whenever state changes, React automatically updates the UI.
 
-// Initializing State from Properties in React
+//====================================
+// Initializing State from Properties
+//====================================
 
 // Sometimes a React component needs to initialize its state using values passed through props. This pattern is used mainly when building reusable components that might receive different initial values from different parent components.
 
