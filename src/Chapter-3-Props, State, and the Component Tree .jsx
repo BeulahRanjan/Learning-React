@@ -1130,7 +1130,9 @@
 
 // React applications are easier to manage when state is stored in a single root component and passed down the component tree as props, while child components remain stateless and focused on presentation.
 
+// =========================================
 // Passing Data Back Up the Component Tree
+//==========================================
 
 // In React, state is usually stored in the root component. Child components cannot directly change that state.
 
@@ -1160,8 +1162,8 @@
 // ColorList passes id + rating
 //  ↑
 // App updates state
-// 2️⃣ Creating Unique IDs with UUID
 
+//  Creating Unique IDs with UUID
 // When adding new colors, each color must have a unique ID.
 
 // React uses this ID to:
@@ -1189,8 +1191,8 @@
 // Example generated ID:
 
 // 0175d1f0-a8c6-41bf-8d02-df5734d829a4
-// 3️⃣ Adding Colors (AddColorForm → App)
 
+//  Adding Colors (AddColorForm → App)
 // The AddColorForm component collects user input and sends it to the parent component using a callback function.
 
 // App Component
@@ -1241,14 +1243,13 @@
 // }
 // What happens here
 
-// 1️⃣ User submits form
-// 2️⃣ AddColorForm calls onNewColor(title,color)
-// 3️⃣ addColor() runs in App
-// 4️⃣ New color added to state
-// 5️⃣ UI re-renders
+// 1️- User submits form
+// 2️- AddColorForm calls onNewColor(title,color)
+// 3️- addColor() runs in App
+// 4️- New color added to state
+// 5️- UI re-renders
 
-// 4️⃣ Updating State with setState
-
+//  Updating State with setState
 // Whenever state changes, React re-renders the UI automatically.
 
 // Example:
@@ -1262,8 +1263,8 @@
 // ColorList receives updated colors
 //  ↓
 // UI updates
-// 5️⃣ Removing and Rating Colors
 
+// Removing and Rating Colors
 // Each color can:
 
 // be rated
@@ -1275,8 +1276,8 @@
 // Callback	Purpose
 // onRate	change rating
 // onRemove	remove color
-// 6️⃣ Color Component
 
+//  Color Component
 // Each color displays:
 
 // title
@@ -1317,8 +1318,7 @@
 
 // These functions notify the parent.
 
-// 7️⃣ ColorList Component
-
+// ColorList Component
 // ColorList manages all color components.
 
 // Example:
@@ -1357,8 +1357,7 @@
 
 // Now the parent knows which color was rated.
 
-// 8️⃣ Updating Rating in App
-
+//  Updating Rating in App
 // The App component updates rating using map().
 
 // Example:
@@ -1380,10 +1379,10 @@
 // }
 // What happens here
 
-// 1️⃣ Find the color with matching ID
-// 2️⃣ Update its rating
-// 3️⃣ Return updated array
-// 4️⃣ Update state
+// 1️- Find the color with matching ID
+// 2- Update its rating
+// 3️- Return updated array
+// 4- Update state
 
 // Example before:
 
@@ -1394,8 +1393,8 @@
 // After:
 
 // Red rating = 4
-// 9️⃣ Removing Colors
 
+//  Removing Colors
 // Removing uses Array.filter().
 
 // Example:
@@ -1422,8 +1421,8 @@
 
 // Red
 // Green
-// 🔟 Passing Callbacks from App
 
+// Passing Callbacks from App
 // The App component sends callbacks to ColorList.
 
 // Example:
@@ -1440,8 +1439,7 @@
 
 // All events travel back to App.
 
-// 1️⃣1️⃣ Single Source of Truth
-
+//  Single Source of Truth
 // All state is stored in one component.
 
 // App
@@ -1463,8 +1461,7 @@
 
 // centralized data management
 
-// 1️⃣2️⃣ Using State for Caching Data
-
+//  Using State for Caching Data
 // State can also store temporary data.
 
 // Example:
@@ -1477,8 +1474,7 @@
 
 // Instead of fetching data repeatedly, React stores it in state.
 
-// 1️⃣3️⃣ Problem in Large Applications
-
+// Problem in Large Applications
 // In large apps:
 
 // passing props through many levels becomes difficult
@@ -1499,8 +1495,7 @@
 
 // Passing props through many components is called prop drilling.
 
-// 1️⃣4️⃣ Solution: Flux / Redux
-
+//  Solution: Flux / Redux
 // For large apps, developers use state management libraries like:
 
 // Redux
@@ -1515,7 +1510,7 @@
 
 // cleaner architecture
 
-// 1️⃣5️⃣ Final Key Concepts
+// Final Key Concepts
 // Concept	Meaning
 // Props	Data passed from parent
 // State	Data that changes
