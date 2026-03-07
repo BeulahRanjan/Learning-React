@@ -407,3 +407,33 @@
 // The child calls the function to send data to the parent.
 
 // The parent manages the state and updates the application.
+
+
+
+//=========================================
+// Refs in Stateless Functional Components
+//=========================================
+
+// Refs (references) in React allow a component to directly access DOM elements such as input fields. In class components, refs are accessed using this.refs, but stateless functional components do not have this, so refs are created using callback functions.
+
+// In this method, React passes the DOM element instance to a function, and we store it in a local variable. This allows us to read values, reset inputs, or focus fields when needed.
+
+// Example
+// const AddColorForm = ({ onNewColor = f => f }) => {
+//   let _title, _color
+
+//   const submit = e => {
+//     e.preventDefault()
+//     onNewColor(_title.value, _color.value)
+//   }
+
+//   return (
+//     <form onSubmit={submit}>
+//       <input ref={input => _title = input} type="text" />
+//       <input ref={input => _color = input} type="color" />
+//       <button>ADD</button>
+//     </form>
+//   )
+// }
+
+// Here, the callback ref (input => _title = input) stores the DOM input element in _title, allowing us to access _title.value.
