@@ -437,3 +437,14 @@
 // }
 
 // Here, the callback ref (input => _title = input) stores the DOM input element in _title, allowing us to access _title.value.
+
+// Here is the difference between refs in ES6 class components and refs in Stateless Functional Components in a clear way.
+
+// Feature  	                Refs in ES6 Class Components	Refs in Stateless Functional Components
+// Access method	                Uses this.refs	             Cannot use this, so uses local variables
+// Ref syntax (old style)	        <input ref="_title" />	      <input ref={input => _title = input} />
+// Where refs are stored	     Stored inside this.refs object	        Stored in local variables
+// Use of this	                Uses this because it is a class	        No this because it is a function
+// Example access	                this.refs._title.value	                      _title.value
+// Ref creation style	        Usually string refs (older React)	        Uses callback function refs
+// Component type	                Class-based components	                Function-based components
