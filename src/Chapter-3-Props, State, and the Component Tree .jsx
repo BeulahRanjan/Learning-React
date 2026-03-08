@@ -1127,7 +1127,6 @@
 // Top-down Data Flow	Data moves from parent to child
 
 // One-line summary
-
 // React applications are easier to manage when state is stored in a single root component and passed down the component tree as props, while child components remain stateless and focused on presentation.
 
 // =========================================
