@@ -1,17 +1,17 @@
 /*===================================================================================
- Chapter-4
- Ehancing Components – Explains improving React components by using lifecycle methods, 
- higher-order components, external libraries, and state management techniques.
+
  ====================================================================================*/
 
  
 
 /*
-1. Component Lifecycle
+=======================
+ Component Lifecycle
+ ======================
 
 In React, the component lifecycle refers to the sequence of methods that run when a component is created, updated, or removed.
 
-Two main lifecycles:
+1-Two main lifecycles:
 
 Mounting – when the component appears for the first time
 
@@ -229,4 +229,13 @@ this → current component instance
 props → data from parent
 state → internal component data
 setState() → updates state and triggers re-render
+
+In React, the method componentDidMount() runs after a component has rendered and been added to the DOM (the Document Object Model).
+It is commonly used to:
+Make API requests
+- Initialize third-party libraries (e.g., drag-and-drop or touch event libraries)
+- Start timers or intervals
+These libraries require the DOM to exist first because they attach event listeners to real HTML elements.
+ Since the DOM is available only after rendering, componentDidMount() is the safe place to run such code.
+In modern React, the same behavior is implemented using useEffect() with an empty dependency array [], which runs once when the component mounts.
  */
