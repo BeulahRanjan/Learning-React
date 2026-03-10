@@ -91,4 +91,343 @@ to invoke setState from this method to change the component state just before th
 component is initially rendered.
 
 
+import React, { Component } from "react";
+
+
+const getFakeMembers = (count) => {
+  return fetch(`https://randomuser.me/api/?results=${count}`)
+    .then(response => response.json())
+    .then(json => json.results);
+};
+
+const Member = ({ email, picture, name, location }) => (
+  <div className="member">
+    <img src={picture.thumbnail} alt="" />
+    <h1>{name.first} {name.last}</h1>
+    <p><a href={"mailto:" + email}>{email}</a></p>
+    <p>{location.city}, {location.state}</p>
+  </div>
+);
+
+
+class MemberList extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      members: [],
+      loading: false,
+      error: null
+    };
+  }
+
+  componentWillMount() {
+    this.setState({ loading: true });
+
+    getFakeMembers(this.props.count).then(
+      members => {
+        this.setState({ members, loading: false });
+      },
+      error => {
+        this.setState({ error, loading: false });
+      }
+    );
+  }
+
+  componentWillUpdate() {
+    console.log("updating lifecycle");
+  }
+
+  render() {
+    const { members, loading, error } = this.state;
+
+    return (
+      <div className="member-list">
+        {loading ?
+          <span>Loading Members</span> :
+          members.length ?
+            members.map((user, i) =>
+              <Member key={i} {...user} />
+            )
+            :
+            <span>0 members loaded...</span>
+        }
+
+        {error ? <p>Error Loading Members</p> : ""}
+      </div>
+    );
+  }
+}
+
+export default function App() {
+  return <MemberList count={5} />;
+}
+
+Explanation of the code:
+This code contains two React components:
+
+Member → A small UI component that displays one member.
+
+MemberList → A parent component that fetches and displays multiple members.
+
+Both are written using React.
+
+I’ll explain the code line by line and then answer your question about which component render() renders.
+
+1. Member Component (Child Component)
+const Member = ({ email, picture, name, location }) =>
+
+This is a functional component.
+
+It receives props using destructuring.
+
+Props expected:
+- email
+- picture
+- name
+- location
+
+Example props object:
+
+{
+  email: "john@email.com",
+  picture: { thumbnail: "img.jpg" },
+  name: { first: "John", last: "Doe" },
+  location: { city: "New York", state: "NY" }
+}
+<div className="member">
+
+Creates a container <div> for one member.
+
+<img src={picture.thumbnail} alt="" />
+
+Displays the member profile image.
+
+Example:
+
+picture.thumbnail = "https://randomuser.me/api/portraits/thumb/men/10.jpg"
+<h1>{name.first} {name.last}</h1>
+
+Displays the member's full name.
+
+Example output:
+
+John Doe
+<p><a href={"mailto:" + email}>{email}</a></p>
+
+Creates a clickable email link.
+
+Example output:
+
+john@email.com
+
+Clicking it opens the email client.
+
+<p>{location.city}, {location.state}</p>
+
+Displays the member location.
+
+Example:
+
+New York, NY
+2. MemberList Component (Parent Component)
+class MemberList extends Component {
+
+This is a class component that manages state and lifecycle.
+
+Constructor
+constructor() {
+ super()
+
+constructor() runs when the component is created.
+
+super() calls the parent Component constructor.
+
+this.state = {
+ members: [],
+ loading: false,
+ error: null
+}
+
+Initial state variables:
+
+State	Purpose
+members	list of users
+loading	indicates data loading
+error	stores error if API fails
+
+Initial values:
+
+members = []
+loading = false
+error = null
+3. componentWillMount()
+componentWillMount() {
+
+This lifecycle method runs before the component mounts.
+
+⚠️ In modern React this method is deprecated.
+
+this.setState({loading: true})
+
+Before fetching data:
+
+loading = true
+
+This tells React to show a loading message.
+
+getFakeMembers(this.props.count)
+
+Calls a function to fetch fake users.
+
+Example:
+
+getFakeMembers(5)
+
+Returns 5 random users.
+
+Usually from randomuser API.
+
+.then(
+ members => {
+
+This runs if the API request succeeds.
+
+this.setState({members, loading: false})
+
+Updates state:
+
+members = fetched users
+loading = false
+
+Now React will re-render the UI.
+
+error => {
+ this.setState({error, loading: false})
+}
+
+If the API fails, it stores the error.
+
+4. componentWillUpdate()
+componentWillUpdate() {
+ console.log('updating lifecycle')
+}
+
+This lifecycle method runs before re-rendering when state changes.
+
+Example:
+
+console → updating lifecycle
+5. render()
+render() {
+
+The render method decides what appears on the screen.
+
+const { members, loading, error } = this.state
+
+Destructuring state.
+
+Same as writing:
+
+this.state.members
+this.state.loading
+this.state.error
+<div className="member-list">
+
+Container for all members.
+
+6. Conditional Rendering
+(loading) ?
+ <span>Loading Members</span> :
+
+If loading is true:
+
+Output:
+
+Loading Members
+(members.length) ?
+
+If members exist:
+
+members.map((user, i) =>
+ <Member key={i} {...user} />
+)
+
+Here React loops through members.
+
+For each user:
+
+<Member {...user} />
+
+This means:
+
+<Member
+ email={user.email}
+ picture={user.picture}
+ name={user.name}
+ location={user.location}
+/>
+
+So each user becomes a Member component.
+
+<span>0 members loaded...</span>
+
+If there are no members, this message appears.
+
+7. Error Handling
+{(error) ? <p>Error Loading Members: error</p> : ""}
+
+If an error exists:
+
+Error Loading Members
+8. Which Component Does render() Render?
+
+Important question 👇
+
+The render() function belongs to MemberList
+
+So React first renders:
+
+MemberList
+
+Inside MemberList, the code dynamically renders:
+
+<Member />
+<Member />
+<Member />
+
+for each user.
+
+Rendering Hierarchy
+MemberList (Parent)
+   |
+   |-- Member (User 1)
+   |-- Member (User 2)
+   |-- Member (User 3)
+Final Example Output
+Member List
+--------------------------------
+[Image] John Doe
+john@email.com
+New York, NY
+
+[Image] Jane Smith
+jane@email.com
+Texas, TX
+
+Each user is a Member component.
+
+Full Flow of Execution
+
+1️- MemberList constructor runs
+2️- componentWillMount() runs
+3️- API fetch starts
+4️- loading = true
+5️- render → "Loading Members"
+6️- API returns members
+7️- setState() updates members
+8️- React re-renders
+9️- members.map() creates multiple Member components
+
+
  */
