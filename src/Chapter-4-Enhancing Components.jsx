@@ -430,56 +430,40 @@ Full Flow of Execution
 9️- members.map() creates multiple Member components
 
 1️⃣ React Is Not a Language
-
 React is a JavaScript library, not a programming language.
 
 It uses JavaScript features like:
-
 classes
-
 objects
-
 functions
-
 inheritance
-
 That is why React components can create objects.
 
 2️⃣ Class Component = Blueprint
 
 Example:
-
 class MemberList extends Component
-
 This defines a component class (blueprint).
-
 It does not create an object yet.
-
 Object is created when React renders:
-
 <MemberList count={5} />
-
 Conceptually React does:
-
 new MemberList(props)
-3️⃣ Component Instance (Object)
 
+3️⃣ Component Instance (Object)
 Each time a component appears in the UI, React creates one instance.
 
 Example:
-
 <MemberList count={5}/>
 <MemberList count={10}/>
 
 React creates:
-
 instance1 → count = 5
 instance2 → count = 10
 
 Each instance has its own state and props.
 
 4️⃣ What super() Does
-
 When you write:
 
 constructor(props){
@@ -491,7 +475,6 @@ super() calls the constructor of the parent class.
 The parent class is:
 
 Component
-
 This initializes important things like:
 
 this.props
@@ -506,10 +489,9 @@ MemberList constructor
 super(props)
    ↓
 Component constructor runs
+
 5️⃣ Why super() Must Be Called First
-
 In JavaScript classes:
-
 super() must run before using this
 
 Example ❌
@@ -519,11 +501,9 @@ constructor(){
 }
 
 Error:
-
 Must call super constructor before using 'this'
 
 Correct ✔
-
 constructor(props){
   super(props)
   this.state = {}
@@ -531,17 +511,14 @@ constructor(props){
 6️⃣ What this Refers To
 
 Inside a class component:
-
 this = current component instance
 
 Example:
-
 this.props
 this.state
 this.setState()
 
 Example instance object:
-
 MemberList instance
 {
  props:{count:5},
@@ -549,51 +526,42 @@ MemberList instance
  setState: function(){},
  render: function(){}
 }
-7️⃣ Props
 
+7️⃣ Props
 Props are data passed from parent component to child component.
 
 Example:
-
 Parent component:
 
 <MemberList count={5}/>
 
 Child component receives:
-
 this.props.count = 5
 
 Props are:
-
 read-only
-
 cannot be changed directly
 
 Example ❌
-
 this.props.count = 10
-8️⃣ State
 
+8️⃣ State
 State is data managed inside the component.
 
 Example:
-
 this.state = {
   members: [],
   loading: false
 }
 
 State can change using:
-
 this.setState()
 
 Example:
-
 this.setState({ loading:true })
-
 When state changes:
-
 React re-renders the component
+
 9️⃣ Difference Between Props and State
 Feature	Props	State
 Source	Parent component	Inside component
@@ -610,15 +578,10 @@ Component
 MemberList
 
 Purpose:
-
 provides setState
-
 lifecycle support
-
 props system
-
 Parent component (UI hierarchy)
-
 Example:
 
 App
@@ -633,22 +596,18 @@ data flow through props
 1️⃣1️⃣ Child to Parent Communication
 
 Data normally flows:
-
 Parent → Child (props)
 
 But child can send data back using callbacks.
 
 Example:
-
 Parent:
-
 <MemberList sendData={handleMembers}/>
 
 Child:
-
 this.props.sendData(this.state.members)
-1️⃣2️⃣ Component Instances in a Project
 
+1️⃣2️⃣ Component Instances in a Project
 A component can have multiple objects.
 
 Example:
@@ -668,11 +627,9 @@ Each instance has its own props and state.
 1️⃣3️⃣ Spread Operator in Props
 
 Example:
-
 <Member {...user}/>
 
 Equivalent to:
-
 <Member
  email={user.email}
  name={user.name}
@@ -682,27 +639,22 @@ Equivalent to:
 1️⃣4️⃣ Render and Re-render
 
 Render happens when:
-
 component first appears
 
 Re-render happens when:
-
 state changes
 props change
 
 Example:
-
 this.setState() → re-render
-1️⃣5️⃣ Modern React
 
+1️⃣5️⃣ Modern React
 Today React mostly uses functional components + hooks instead of class components.
 
 Example:
-
 const [members, setMembers] = useState([])
 
 No:
-
 constructor
 this
 super
