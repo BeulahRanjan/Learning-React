@@ -165,4 +165,5 @@ This is why, in React, many HTML and SVG attributes are written in camelCase. Fo
 />
 You can find all these attributes in the list of DOM component props. If you get one wrong, don’t worry—React will print a message with a possible correction to the browser console.
 
+Converting all these attributes in existing markup can be tedious! We recommend using a converter to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it’s still worth understanding what is going on so that you can comfortably write JSX on your own.
 */
