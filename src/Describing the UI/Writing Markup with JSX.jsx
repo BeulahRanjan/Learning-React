@@ -132,6 +132,9 @@ If you don’t want to add an extra <div> to your markup, you can write <> and <
 </>
 This empty tag is called a Fragment. Fragments let you group things without leaving any trace in the browser HTML tree.
 
+Why do multiple JSX tags need to be wrapped? 
+JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can’t return two objects from a function without wrapping them into an array. This explains why you also can’t return two JSX tags without wrapping them into another tag or a Fragment.
+
 2. Close all the tags 
 JSX requires tags to be explicitly closed: self-closing tags like <img> must become <img />, and wrapping tags like <li>oranges must be written as <li>oranges</li>.
 
