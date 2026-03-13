@@ -23,4 +23,16 @@ export default function Profile() {
             <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
          </div>
 );
+
+- Now that you’ve defined your Profile component, you can nest it inside other components. For example, 
+    export default function Gallery() {
+        return (
+            <section>
+                <h1>Amazing scientists</h1>
+                <Profile />
+                <Profile />
+                <Profile />
+            </section>
+        );
+    }
 */
