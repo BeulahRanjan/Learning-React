@@ -68,4 +68,60 @@ Either './Gallery.js' or './Gallery' will work with React, though the former is 
 
 What if you want to show just one Profile instead of a gallery? You can export the Profile component, too. But Gallery.js already has a default export, and you can’t have two default exports. You could create a new file with a default export, 
 or you could add a named export for Profile. A file can only have one default export, but it can have numerous named exports!
+
+First, export Profile from Gallery.js using a named export (no default keyword):
+
+export function Profile() {
+  // ...
+}
+Then, import Profile from Gallery.js to App.js using a named import (with the curly braces):
+
+import { Profile } from './Gallery.js';
+Finally, render <Profile /> from the App component:
+
+export default function App() {
+  return <Profile />;
+}
+Now Gallery.js contains two exports: a default Gallery export, and a named Profile export. App.js imports both of them. 
+
+export function Profile() {
+  return (
+    <img
+      src="https://i.imgur.com/QIrZWGIs.jpg"
+      alt="Alan L. Hart"
+    />
+  );
+}
+
+Gallery.js
+export default function Gallery() {
+  return (
+    <section>
+      <h1>Amazing scientists</h1>
+      <Profile />
+      <Profile />
+      <Profile />
+    </section>
+  );
+}
+
+App.js
+import Gallery from './Gallery.js';
+import { Profile } from './Gallery.js';
+
+export default function App() {
+  return (
+    <Profile />
+  );
+}
+Now you’re using a mix of default and named exports:
+
+Gallery.js:
+Exports the Profile component as a named export called Profile.
+Exports the Gallery component as a default export.
+App.js:
+Imports Profile as a named import called Profile from Gallery.js.
+Imports Gallery as a default import from Gallery.js.
+Exports the root App component as a default export.
+
 */
