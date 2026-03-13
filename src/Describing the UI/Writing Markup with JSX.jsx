@@ -20,4 +20,149 @@ Each React component is a JavaScript function that may contain some markup that 
 
 Note:
 JSX and React are two separate things. They’re often used together, but you can use them independently of each other. JSX is a syntax extension, while React is a JavaScript library.
- */
+Suppose that you have some (perfectly valid) HTML:
+
+<h1>Hedy Lamarr's Todos</h1>
+<img 
+  src="https://i.imgur.com/yXOvdOSs.jpg" 
+  alt="Hedy Lamarr" 
+  class="photo"
+>
+<ul>
+    <li>Invent new traffic lights
+    <li>Rehearse a movie scene
+    <li>Improve the spectrum technology
+</ul>
+And you want to put it into your component:
+
+export default function TodoList() {
+  return (
+    // ???
+  )
+}
+If you copy and paste it as is, it will not work:
+
+
+App.js
+Download
+
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+export default function TodoList() {
+  return (
+    // This doesn't quite work!
+    <h1>Hedy Lamarr's Todos</h1>
+    <img 
+      src="https://i.imgur.com/yXOvdOSs.jpg" 
+      alt="Hedy Lamarr" 
+      class="photo"
+    >
+    <ul>
+      <li>Invent new traffic lights
+      <li>Rehearse a movie scene
+      <li>Improve the spectrum technology
+    </ul>
+  );
+}
+
+
+Error
+/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (5:4)
+
+  3 |     // This doesn't quite work!
+  4 |     <h1>Hedy Lamarr's Todos</h1>
+> 5 |     <img 
+    |     ^
+  6 |       src="https://i.imgur.com/yXOvdOSs.jpg" 
+  7 |       alt="Hedy Lamarr" 
+  8 |       class="photo"
+
+Show more
+This is because JSX is stricter and has a few more rules than HTML! If you read the error messages above, they’ll guide you to fix the markup, or you can follow the guide below.
+
+Note
+Most of the time, React’s on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
+
+The Rules of JSX 
+1. Return a single root element 
+To return multiple elements from a component, wrap them with a single parent tag.
+
+For example, you can use a <div>:
+
+<div>
+  <h1>Hedy Lamarr's Todos</h1>
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
+    class="photo"
+  >
+  <ul>
+    ...
+  </ul>
+</div>
+If you don’t want to add an extra <div> to your markup, you can write <> and </> instead:
+
+<>
+  <h1>Hedy Lamarr's Todos</h1>
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
+    class="photo"
+  >
+  <ul>
+    ...
+  </ul>
+</>
+This empty tag is called a Fragment. Fragments let you group things without leaving any trace in the browser HTML tree.
+
+Deep Dive
+Why do multiple JSX tags need to be wrapped? 
+
+Show Details
+2. Close all the tags 
+JSX requires tags to be explicitly closed: self-closing tags like <img> must become <img />, and wrapping tags like <li>oranges must be written as <li>oranges</li>.
+
+This is how Hedy Lamarr’s image and list items look closed:
+
+<>
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
+    class="photo"
+   />
+  <ul>
+    <li>Invent new traffic lights</li>
+    <li>Rehearse a movie scene</li>
+    <li>Improve the spectrum technology</li>
+  </ul>
+</>
+3. camelCase all most of the things! 
+JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can’t contain dashes or be reserved words like class.
+
+This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of stroke-width you use strokeWidth. Since class is a reserved word, in React you write className instead, named after the corresponding DOM property:
+
+<img 
+  src="https://i.imgur.com/yXOvdOSs.jpg" 
+  alt="Hedy Lamarr" 
+  className="photo"
+/>
+You can find all these attributes in the list of DOM component props. If you get one wrong, don’t worry—React will print a message with a possible correction to the browser console.
+
+*/
