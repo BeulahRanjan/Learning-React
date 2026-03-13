@@ -43,7 +43,7 @@ function Profile() {
     />
   );
 }
-  
+
 App.js:
 Imports Gallery as a default import from Gallery.js.
 Exports the root App component as a default export.
@@ -61,4 +61,11 @@ export default function Gallery() {
 Gallery.js:
 Defines the Profile component which is only used within the same file and is not exported.
 Exports the Gallery component as a default export.
-  */
+
+You may encounter files that leave off the .js file extension like so:
+import Gallery from './Gallery';
+Either './Gallery.js' or './Gallery' will work with React, though the former is closer to how native ES Modules work.
+
+What if you want to show just one Profile instead of a gallery? You can export the Profile component, too. But Gallery.js already has a default export, and you can’t have two default exports. You could create a new file with a default export, 
+or you could add a named export for Profile. A file can only have one default export, but it can have numerous named exports!
+*/
