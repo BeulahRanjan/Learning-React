@@ -132,10 +132,6 @@ If you don’t want to add an extra <div> to your markup, you can write <> and <
 </>
 This empty tag is called a Fragment. Fragments let you group things without leaving any trace in the browser HTML tree.
 
-Deep Dive
-Why do multiple JSX tags need to be wrapped? 
-
-Show Details
 2. Close all the tags 
 JSX requires tags to be explicitly closed: self-closing tags like <img> must become <img />, and wrapping tags like <li>oranges must be written as <li>oranges</li>.
 
@@ -153,6 +149,7 @@ This is how Hedy Lamarr’s image and list items look closed:
     <li>Improve the spectrum technology</li>
   </ul>
 </>
+
 3. camelCase all most of the things! 
 JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can’t contain dashes or be reserved words like class.
 
