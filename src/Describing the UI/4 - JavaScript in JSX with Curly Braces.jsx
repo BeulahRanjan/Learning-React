@@ -27,4 +27,5 @@ export default function Avatar() {
   );
 }
 
+Notice the difference between className="avatar", which specifies an "avatar" CSS class name that makes the image round, and src={avatar} that reads the value of the JavaScript variable called avatar. That’s because curly braces let you work with JavaScript right there in your markup!
  */
