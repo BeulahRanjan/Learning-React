@@ -83,4 +83,48 @@ export default function TodoList() {
 
 The next time you see {{ and }} in JSX, know that it’s nothing more than an object inside the JSX curlies!
 
+More fun with JavaScript objects and curly braces 
+
+You can move several expressions into one object, and reference them in your JSX inside curly braces:
+const person = {
+  name: 'Gregorio Y. Zara',
+  theme: {
+    backgroundColor: 'black',
+    color: 'pink'
+  }
+};
+
+export default function TodoList() {
+  return (
+    <div style={person.theme}>
+      <h1>{person.name}'s Todos</h1>
+      <img
+        className="avatar"
+        src="https://i.imgur.com/7vQD0fPs.jpg"
+        alt="Gregorio Y. Zara"
+      />
+      <ul>
+        <li>Improve the videophone</li>
+        <li>Prepare aeronautics lectures</li>
+        <li>Work on the alcohol-fuelled engine</li>
+      </ul>
+    </div>
+  );
+}
+
+In this example, the person JavaScript object contains a name string and a theme object:
+
+const person = {
+  name: 'Gregorio Y. Zara',
+  theme: {
+    backgroundColor: 'black',
+    color: 'pink'
+  }
+};
+The component can use these values from person like so:
+
+<div style={person.theme}>
+  <h1>{person.name}'s Todos</h1>
+
+  JSX is very minimal as a templating language because it lets you organize data and logic using JavaScript.
  */
