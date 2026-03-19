@@ -91,4 +91,38 @@ Each child in a list should have a unique "key" prop.
 
 Check the render method of `List`. See https://react.dev/link/warning-keys for more information.
 
+Keeping list items in order with key 
+
+Notice that all the sandboxes above show an error in the console:
+
+Console
+Warning: Each child in a list should have a unique “key” prop.
+You need to give each array item a key — a string or a number that uniquely identifies it among other items in that array:
+
+<li key={person.id}>...</li>
+
+Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen key helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+
+Rather than generating keys on the fly, you should include them in your data:
+
+import { people } from './data.js';
+import { getImageUrl } from './utils.js';
+
+export default function List() {
+  const listItems = people.map(person =>
+    <li key={person.id}>
+      <img
+        src={getImageUrl(person)}
+        alt={person.name}
+      />
+      <p>
+        <b>{person.name}</b>
+          {' ' + person.profession + ' '}
+          known for {person.accomplishment}
+      </p>
+    </li>
+  );
+  return <ul>{listItems}</ul>;
+}
+
 */
