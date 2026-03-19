@@ -125,4 +125,17 @@ export default function List() {
   return <ul>{listItems}</ul>;
 }
 
+Where to get your key 
+Different sources of data provide different sources of keys:
+
+Data from a database: If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
+Locally generated data: If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, crypto.randomUUID() or a package like uuid when creating items.
+Rules of keys 
+Keys must be unique among siblings. However, it’s okay to use the same keys for JSX nodes in different arrays.
+Keys must not change or that defeats their purpose! Don’t generate them while rendering.
+Why does React need keys? 
+Imagine that files on your desktop didn’t have names. Instead, you’d refer to them by their order — the first file, the second file, and so on. You could get used to it, but once you delete a file, it would get confusing. The second file would become the first file, the third file would be the second file, and so on.
+
+File names in a folder and JSX keys in an array serve a similar purpose. They let us uniquely identify an item between its siblings. A well-chosen key provides more information than the position within the array. Even if the position changes due to reordering, the key lets React identify the item throughout its lifetime.
+
 */
