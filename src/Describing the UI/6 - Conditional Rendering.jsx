@@ -181,6 +181,56 @@ export default function PackingList() {
   );
 }
 
-This style works well for simple conditions, but use it in moderation. If your components get messy with too much nested conditional markup, consider extracting child components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
+This style works well for simple conditions, but use it in moderation. 
+If your components get messy with too much nested conditional markup, 
+consider extracting child components to clean things up. In React, 
+markup is a part of your code, so you can use tools like variables and 
+functions to tidy up complex expressions.
+
+Logical AND operator (&&) 
+
+Another common shortcut you’ll encounter is the JavaScript logical AND (&&) operator. Inside React components, it often comes up when you want to render some JSX when the condition is true, or render nothing otherwise. With &&, you could conditionally render the checkmark only if isPacked is true:
+return (
+  <li className="item">
+    {name} {isPacked && '✅'}
+  </li>
+);
+You can read this as “if isPacked, then (&&) render the checkmark,
+ otherwise, render nothing”.
+
+ Here it is in action:
+ function Item({ name, isPacked }) {
+  return (
+    <li className="item">
+      {name} {isPacked && '✅'}
+    </li>
+  );
+}
+
+export default function PackingList() {
+  return (
+    <section>
+      <h1>Sally Ride's Packing List</h1>
+      <ul>
+        <Item 
+          isPacked={true} 
+          name="Space suit" 
+        />
+        <Item 
+          isPacked={true} 
+          name="Helmet with a golden leaf" 
+        />
+        <Item 
+          isPacked={false} 
+          name="Photo of Tam" 
+        />
+      </ul>
+    </section>
+  );
+}
+
+A JavaScript && expression returns the value of its right side (in our case, the checkmark) if the left side (our condition) is true. But if the condition is false, the whole expression becomes false. React considers false as a “hole” in the JSX tree, just like null or undefined, and doesn’t render anything in its place.
+
+
 
 */
