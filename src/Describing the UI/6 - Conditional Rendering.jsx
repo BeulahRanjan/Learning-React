@@ -124,4 +124,23 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 While this duplication isn’t harmful, it could make your code harder to maintain. What if you want to change the className? You’d have to do it in two places in your code! In such a situation, you could conditionally include a little JSX to make your code more DRY.
 
+
+Conditional (ternary) operator (? :)
+JavaScript has a compact syntax for writing a conditional expression — the conditional operator or “ternary operator”.
+
+Instead of this:
+
+if (isPacked) {
+  return <li className="item">{name} ✅</li>;
+}
+return <li className="item">{name}</li>;
+
+You can write this:
+return (
+  <li className="item">
+    {isPacked ? name + ' ✅' : name}
+  </li>
+);
+You can read it as “if isPacked is true, then (?) render name + ' ✅', otherwise (:) render name”.
+
 */
