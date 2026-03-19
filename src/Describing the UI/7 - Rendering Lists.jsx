@@ -25,4 +25,13 @@ Map the people members into a new array of JSX nodes, listItems:
 const listItems = people.map(person => <li>{person}</li>);
 Return listItems from your component wrapped in a <ul>:
 return <ul>{listItems}</ul>;
- */
+ 
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `List`. See https://react.dev/link/warning-keys for more information.
+Notice the sandbox above displays a console error:
+
+Console
+Warning: Each child in a list should have a unique “key” prop.
+
+*/
