@@ -80,5 +80,5 @@ export default function TeaSet() {
     </>
   );
 }
-
+Now your component is pure, as the JSX it returns only depends on the guest prop.
  */
