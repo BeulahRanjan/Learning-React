@@ -81,4 +81,39 @@ export default function TeaSet() {
   );
 }
 Now your component is pure, as the JSX it returns only depends on the guest prop.
- */
+ 
+Local mutation: Your component’s little secret
+In the above example, the problem was that the component changed a preexisting variable while rendering. This is often called a “mutation” to make it sound a bit scarier. Pure functions don’t mutate variables outside of the function’s scope or objects that were created before the call—that makes them impure!
+
+However, it’s completely fine to change variables and objects that you’ve just created while rendering. In this example, you create an [] array, assign it to a cups variable, and then push a dozen cups into it:
+function Cup({ guest }) {
+  return <h2>Tea cup for guest #{guest}</h2>;
+}
+
+export default function TeaGathering() {
+  const cups = [];
+  for (let i = 1; i <= 12; i++) {
+    cups.push(<Cup key={i} guest={i} />);
+  }
+  return cups;
+}
+
+Output:
+Tea cup for guest #1
+Tea cup for guest #2
+Tea cup for guest #3
+Tea cup for guest #4
+Tea cup for guest #5
+Tea cup for guest #6
+Tea cup for guest #7
+Tea cup for guest #8
+Tea cup for guest #9
+Tea cup for guest #10
+Tea cup for guest #11
+Tea cup for guest #12
+
+If the cups variable or the [] array were created outside the TeaGathering function, this would be a huge problem! You would be changing a preexisting object by pushing items into that array.
+
+However, it’s fine because you’ve created them during the same render, inside TeaGathering. No code outside of TeaGathering will ever know that this happened. This is called “local mutation”—it’s like your component’s little secret.
+
+*/
