@@ -125,4 +125,45 @@ If you’ve exhausted all other options and can’t find the right event handler
 
 When possible, try to express your logic with rendering alone. You’ll be surprised how far this can take you!
 
+“Rendering in React is when the component re-evaluates JSX based on state. By placing conditions inside JSX, we let rendering handle the logic of what to display instead of writing separate control flow.
+
+Local mutation inside a component is acceptable if it’s done on temporary variables created during rendering. React only discourages mutation of state or props, because that breaks reactivity.
+
+Because React re-renders by calling the component function again, all local variables inside it are recreated on every render.
+
+React does not preserve local variables between renders. It only preserves state and refs. That’s why local mutation is safe—it doesn’t persist.
+
+React can render twice because of Strict Mode in development.
+
+🔹 The Real Reason (Most Likely in Your Case)
+
+If you’re using React (especially newer versions), your app is probably wrapped like this:
+
+<React.StrictMode>
+  <App />
+</React.StrictMode>
+
+👉 In development only, React intentionally calls your component twice.
+
+🔥 Why React does this
+
+👉 To detect bugs like:
+
+Side effects inside render
+Unexpected mutations
+Impure functions
+
+So React does:
+
+TeaGathering(); // first render
+TeaGathering(); // second render (to check consistency)
+
+ Then it throws away one result
+When React actually re-renders (real cases)
+
+Outside Strict Mode, rendering happens when:
+
+State changes
+Props change
+Parent re-renders
 */
