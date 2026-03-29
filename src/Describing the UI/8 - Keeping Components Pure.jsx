@@ -169,4 +169,4 @@ Parent re-renders
 
 Directly mutating state does not properly persist across renders because React doesn’t detect the change. State should always be updated using setState so that React can track the change and trigger a re-render.
 State is stored internally by React, but directly mutating it doesn’t trigger a re-render. React relies on setState to detect changes, so without it, the UI won’t update even though the value changed in memory.
-*/
+*///
