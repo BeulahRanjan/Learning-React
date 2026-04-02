@@ -8,4 +8,4 @@ Like browsers and mobile platforms, React also uses tree structures to manage an
 A major feature of components is the ability to compose components of other components. As we nest components, we have the concept of parent and child components, where each parent component may itself be a child of another component.
 
  */
-///
+//
